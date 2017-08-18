@@ -17,6 +17,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Python compilation files
+*.pyc 
 # =========================
 # Operating System Files
 # =========================
