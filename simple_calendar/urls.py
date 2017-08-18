@@ -6,7 +6,7 @@ from rest_framework import routers
 admin.autodiscover()
 
 router = routers.DefaultRouter()
-router.register(r'rest_appointment', views.AppointmentViewSet, "Appointment")
+router.register(r'rest_appointment', views.AppointmentView, "Appointment")
 
 urlpatterns = [
     url(r'^', include('appointments.urls', namespace="appointments")),

@@ -19,7 +19,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 urlpatterns = patterns('',
-    url(r'^/rest_apt', include(router.urls)),
     url(r'^$', views.AppointmentView.as_view(), name='calendar_home'),
     url(r'^', include(router.urls)),
 )

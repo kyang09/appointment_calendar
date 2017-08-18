@@ -7,7 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 import json
 import datetime
-from appointments.models import Appointment
+import itertools
+from appointments.models import Appointment, Host
 from appointments.serializers import AppointmentSerializer
 
 class AppointmentView(generic.ListView):
@@ -18,7 +19,7 @@ class AppointmentView(generic.ListView):
     context_object_name = 'display_the_calendar'
 
     def get_queryset(self):
-        return Appointment.objects.all();
+        return Appointment.objects.all()
 
 class AppointmentViewSet(viewsets.ModelViewSet):
     """

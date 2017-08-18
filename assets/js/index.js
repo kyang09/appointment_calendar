@@ -1,14 +1,30 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
+//var React = require('react')
+//var ReactDOM = require('react-dom')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Fetch from 'react-fetch'
+import createReactClass from 'create-react-class'
 
-var Hello = React.createClass ({
+var Hello = createReactClass({
     render: function() {
         return (
-            <h1>
-            Appointment Calendar
-            </h1>
+            <div>
+                <h1> Appointment Calendar </h1>
+                <Fetch url="http://127.0.0.1:8000/rest_appointment">
+                    <TestComponent/>
+                </Fetch>
+            </div>
         )
     }
 })
+
+class TestComponent extends React.Component {
+  render() {
+    for (let i = 0; i < Object.keys(this.props).length; i++) {
+        console.log(this.props[i])
+    }
+    return <div/>
+  }
+}
 
 ReactDOM.render(<Hello />, document.getElementById('container'))
