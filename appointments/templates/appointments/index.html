@@ -1,0 +1,25 @@
+{% extends "appointments/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Appointment Calendar{% endblock %}
+
+{% block css %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'appointments/css/calendar_style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/overcast/jquery-ui.css" />
+
+{% endblock %}
+
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'appointments/js/calendar_script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Appoint Calendar shows here. -->
+
+    <div id="calendar"></div>
+
+{% endblock %}
