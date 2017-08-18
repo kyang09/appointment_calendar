@@ -11,6 +11,9 @@ from appointments.models import Appointment
 from appointments.serializers import AppointmentSerializer
 
 class AppointmentView(generic.ListView):
+    """
+    View for the calendar.
+    """
     template_name = 'appointments/index.html'
     context_object_name = 'display_the_calendar'
 
@@ -18,11 +21,8 @@ class AppointmentView(generic.ListView):
         return Appointment.objects.all();
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-
     """
-
     API endpoint that adds, modifies, and deletes appointments.
-
     """
     queryset = Appointment.objects.all()
     model = Appointment
@@ -32,7 +32,6 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         queryset = Appointment.objects.all()
         apt = get_object_or_404(queryset, pk=pk)
         serializer = AppointmentSerializer(apt)
-
         return Response(serializer.data)
 
     def list(self, request):

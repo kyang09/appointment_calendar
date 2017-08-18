@@ -9,11 +9,7 @@ router = routers.DefaultRouter()
 router.register(r'rest_appointment', views.AppointmentViewSet, "Appointment")
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'simple_calendar.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^', include('appointments.urls', namespace="appointments")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(router.urls)),
-    #url(r'^', include(router.urls)),
 ]
