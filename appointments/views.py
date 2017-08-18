@@ -59,12 +59,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
-    """def destroy(self, request, pk):
+    def destroy(self, request, pk):
         destr = Appointment.objects.get(pk=pk)
         serializer = AppointmentSerializer(destr, data=request.data)
         if serializer.is_valid():
             #serializer.save()
-            #destr.delete()
+            destr.delete()
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        """
+        
