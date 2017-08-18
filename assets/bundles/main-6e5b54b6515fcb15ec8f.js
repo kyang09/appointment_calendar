@@ -10644,9 +10644,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var Hello = __WEBPACK_IMPORTED_MODULE_3_create_react_class___default()({
-    displayName: 'Hello',
+var AptCalendar = __WEBPACK_IMPORTED_MODULE_3_create_react_class___default()({
+    displayName: 'AptCalendar',
 
+    getInitialState: function () {
+        return {
+            data: {
+                apts: []
+            }
+        };
+    },
     render: function () {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
@@ -10659,22 +10666,29 @@ var Hello = __WEBPACK_IMPORTED_MODULE_3_create_react_class___default()({
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_2_react_fetch___default.a,
                 { url: 'http://127.0.0.1:8000/rest_appointment' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TestComponent, null)
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(AptComponent, { data: this.state.data })
             )
         );
     }
 });
 
-class TestComponent extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+class AptComponent extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     render() {
-        for (let i = 0; i < Object.keys(this.props).length; i++) {
-            console.log(this.props[i]);
-        }
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'p',
+            { className: 'AptComponent' },
+            this.props.data.apts.map(function (apt) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'li',
+                    { key: apt },
+                    apt
+                );
+            })
+        );
     }
 }
 
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Hello, null), document.getElementById('container'));
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(AptCalendar, null), document.getElementById('container'));
 
 /***/ }),
 /* 84 */

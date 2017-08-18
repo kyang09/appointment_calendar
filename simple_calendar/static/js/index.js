@@ -21,7 +21,8 @@ var Hello = createReactClass({
 class TestComponent extends React.Component {
   render() {
     for (let i = 0; i < Object.keys(this.props).length; i++) {
-        console.log(this.props[i])
+        console.log(this.props[0][i])
+        <span>this.props[0][i]</span>
     }
     return <div/>
   }

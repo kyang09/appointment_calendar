@@ -9,7 +9,7 @@ import json
 import datetime
 import itertools
 from appointments.models import Appointment, Host
-from appointments.serializers import AppointmentSerializer
+from appointments.serializers import AppointmentSerializer, HostSerializer
 
 class AppointmentView(generic.ListView):
     """
@@ -38,7 +38,11 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = Appointment.objects.all()
         serializer = AppointmentSerializer(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        host_queryset = Host.objects.all()
+        host_serializer = HostSerializer(host_queryset, many=True)
+        return Response(
+            [serializer.data, host_serializer.data], 
+            status=status.HTTP_201_CREATED)
 
     def create(self, request):
         serializer = AppointmentSerializer(data=request.data)  
@@ -54,20 +58,13 @@ class AppointmentViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def put(self, request, pk, format=None):
-        temp = self.get_object(pk)
-        serializer = AppointmentSerializer(temp, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
-    def destroy(self, request, pk):
+    """def destroy(self, request, pk):
         destr = Appointment.objects.get(pk=pk)
         serializer = AppointmentSerializer(destr, data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            destr.delete()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            #serializer.save()
+            #destr.delete()
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        """
